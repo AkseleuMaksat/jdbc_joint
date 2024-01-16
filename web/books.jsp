@@ -24,7 +24,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Book</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -60,7 +60,7 @@
                                 <tr>
                                     <td><%=book.getId()%></td>
                                     <td><%=book.getName()%></td>
-                                    <td><%=book.getAuthor()%></td>
+                                    <td><%=book.getAuthor().getFirst_name()+" "+ book.getAuthor().getLast_name()%></td>
                                     <td><%=book.getGenre()%></td>
                                     <td><%=book.getPrice()%> KZT</td>
                                     <td>

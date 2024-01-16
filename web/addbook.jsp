@@ -11,6 +11,7 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-6 mx-auto">
+
                     <%@include file="addform.jsp"%>
                 </div>
             </div>

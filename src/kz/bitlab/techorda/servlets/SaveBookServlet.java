@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.bitlab.techorda.db.Book;
 import kz.bitlab.techorda.db.DBConnection;
+import kz.bitlab.techorda.entity.Author;
 
 import java.io.IOException;
 
@@ -18,18 +19,19 @@ public class SaveBookServlet extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("book_id"));
         String name = request.getParameter("book_name");
-        String author = request.getParameter("book_author");
+        int authorID = Integer.parseInt(request.getParameter("book_author"));
         double price = Double.parseDouble(request.getParameter("book_price"));
         String genre = request.getParameter("book_genre");
         String description = request.getParameter("book_description");
 
         Book book = DBConnection.getBook(id);
-        if(book!=null){
+        Author author = DBConnection.getAuthor(authorID);
+        if(book!=null && author!=null){
             book.setName(name);
-            book.setAuthor(author);
             book.setPrice(price);
             book.setGenre(genre);
             book.setDescription(description);
+            book.setAuthor(author);
             DBConnection.updateBook(book);
             response.sendRedirect("/details?book_id="+id);
         }else{

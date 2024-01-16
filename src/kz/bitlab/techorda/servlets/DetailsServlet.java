@@ -7,9 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kz.bitlab.techorda.db.Book;
 import kz.bitlab.techorda.db.DBConnection;
-import kz.bitlab.techorda.db.DBManager;
+import kz.bitlab.techorda.entity.Author;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(value = "/details")
 public class DetailsServlet extends HttpServlet {
@@ -21,8 +22,13 @@ public class DetailsServlet extends HttpServlet {
             id = Integer.parseInt(request.getParameter("book_id"));
         }catch (Exception e){
         }
-        Book book = DBConnection .getBook(id);
+
+        ArrayList<Author> authors =DBConnection.getAuthors();
+        request.setAttribute("author", authors);
+
+        Book book = DBConnection.getBook(id);
         request.setAttribute("kniga", book);
+
         request.getRequestDispatcher("/details.jsp").forward(request, response);
     }
 }
